@@ -17,7 +17,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${github.repository,,}
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build:
@@ -31,6 +31,9 @@ jobs:
       group: deploy-${{ inputs.environment }}
       cancel-in-progress: false
     steps:
+      - name: set lower case owner name
+        run: |
+          echo "IMAGE_NAME_LOWER_CASE=${IMAGE_NAME,,}" >>${GITHUB_ENV}
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -45,8 +48,8 @@ jobs:
         if: ${{ inputs.environment }} == 'Staging'
         id: push
         run: |
-          docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main
-          docker tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main ${{ secrets.AWS_ACCOUNT_NUMBER }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com/${{ github.event.repository.name }}
+          docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_LOWER_CASE }}:main
+          docker tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_LOWER_CASE }}:main ${{ secrets.AWS_ACCOUNT_NUMBER }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com/${{ github.event.repository.name }}
           docker push ${{ secrets.AWS_ACCOUNT_NUMBER }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com/${{ github.event.repository.name }}
 
       - name: Deploy production with aws CLI
