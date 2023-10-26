@@ -5,7 +5,7 @@
 
 - [Deployment protection rules](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#deployment-protection-rules)
 
-# Using the Exercise Files
+# Checklist
 ## 1. Create a repo; add service account credentials
 1. Create a new repo.
 1. Review the steps in [Create a Service Account](../04_04_create_a_service_account/README.md) to add service account credentials to the repo
