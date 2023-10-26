@@ -1,4 +1,4 @@
-# 04_05_ci_cd_for_container_images
+# CI/CD For Container Image
 
 ## Recommended Reading
 - [Creating a reusable workflow](https://docs.github.com/en/actions/using-workflows/reusing-workflows#creating-a-reusable-workflow)
