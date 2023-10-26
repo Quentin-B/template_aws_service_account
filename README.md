@@ -8,7 +8,7 @@
 # Checklist
 ## 1. Create a repo; add service account credentials
 1. Create a new repo.
-1. Review the steps in [Create a Service Account](../04_04_create_a_service_account/README.md) to add service account credentials to the repo
+1. Review the documentation on [Using Secrets in GitHub Actions](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions) to add service account credentials to the repo
 
 ## 2. Create a repo in the Elastic Container Registry (ECR); Push an image
 1. In your AWS account, go the [ECR homepage](https://console.aws.amazon.com/ecr/home)
